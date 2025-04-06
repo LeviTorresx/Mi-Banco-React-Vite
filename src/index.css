@@ -1,115 +1,16 @@
 @import "tailwindcss";
 
 #root {
-  --tw-bg-opacity: 1;
-  background-color: rgba(0, 0, 0);
+  /* Colors */
+  --color-primary-dark: rgb(41, 52, 49); /* #293431 */
+  --color-background: rgb(28, 30, 30); /* #151616 */
+  --color-accent: rgb(69, 170, 150); /* #45aa96 */
+  --color-accent-light: rgb(5, 206, 168); /* #05cea8 */
+  --color-accent-dark: rgb(0, 128, 96); /* #008060 */
+
+  --color-light: rgb(244, 244, 244);
+  --color-dark: rgb(40, 39, 39);
+
+  background-color: var(--color-background);
   color: #fff;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 20px;
-  height: 100vh;
-  width: 100vw;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.item {
-  background-color: #1e1e2f; 
-  color: #fff;
-  border-radius: 20px;
-  padding: 24px;
-  font-size: 120%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), 0 0 8px rgba(168, 85, 247, 0.3); 
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.item:hover {
-    transform: translateY(-4px);
-    box-shadow:
-      0 12px 30px rgba(0, 0, 0, 0.5),
-      0 0 24px rgba(168, 85, 247, 0.5);
-  }
-
-.mobile-only {
-  display: block;
-}
-
-.desktop-only {
-  display: none;
-}
-
-.item-0 {
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 2;
-}
-
-.item-1 {
-  grid-column: 1 / span 2;
-  grid-row: 3;
-}
-
-.item-2 {
-  grid-column: 1;
-  grid-row: 4;
-}
-
-.item-3 {
-  grid-column: 1 / span 2;
-  grid-row: 5;
-}
-
-.item-5 {
-  grid-column: 2;   
-  grid-row: 4;
-}
-
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 30px;
-    padding: 20px;
-  }
-
-  .mobile-only {
-    display: none;
-  }
-
-  .desktop-only {
-    display: block;
-  }
-
-  .item-0 {
-    grid-column: 1 / span 2;
-    grid-row: 1;
-  }
-
-  .item-1 {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .item-2 {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .item-3 {
-    grid-column: 3;
-    grid-row: 1;
-  }
-
-  .item-4 {
-    grid-column: 4;
-    grid-row: 1;
-  }
-
-  .item-5 {
-    grid-column: 3 / span 2;
-    grid-row: 2;
-  }
 }

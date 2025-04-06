@@ -1,0 +1,18 @@
+.button{
+    display:flex;
+    padding: 7px 14px;
+    font-size: 90%;
+    font-weight: 600;
+    color: var(--color-light);
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px var(--color-accent-dark), 0 0 4px var(--color-accent-light);
+    transition: all 0.3s ease;
+}
+
+.button:hover{
+    background-color: var(--color-accent-dark);
+    scale: 1.05;
+}
