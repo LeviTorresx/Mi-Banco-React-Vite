@@ -1,6 +1,31 @@
+import "./Input.css";
 
-export default function Input() {
+interface Props {
+  label: string;
+  type: string;
+  placeholder?: string;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export default function Input({
+  label,
+  type,
+  placeholder,
+  value,
+  onChange,
+}: Props) {
   return (
-    <div>Input</div>
-  )
+    <>
+      <label>
+        <span>{label}</span>
+        <input
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+        />
+      </label>
+    </>
+  );
 }

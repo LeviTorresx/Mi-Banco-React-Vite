@@ -1,5 +1,9 @@
-import Section from "../../components/sections/Section";
-import Button from "../../components/button/Button";
+import { Section } from "../../components";
+import { TbDatabaseSearch } from "react-icons/tb";
+import { FaMoneyBillTransfer, FaUsers } from "react-icons/fa6";
+import { FaUserPlus } from "react-icons/fa";
+import { RiFolderUserFill } from "react-icons/ri";
+
 import "./LandingStyles.css";
 
 export default function Landing() {
@@ -13,10 +17,9 @@ export default function Landing() {
         <Section
           title="Transferencias"
           description="Realiza transferencias de forma rápida y segura."
+          route="/transferencias"
         >
-          <Button onClick={() => alert("Button clicked!")}>
-            Realizar una Transferencia -{" "}
-          </Button>
+          <FaMoneyBillTransfer className="icon" />
         </Section>
       </div>
 
@@ -24,17 +27,19 @@ export default function Landing() {
         <Section
           title="Sobre nosotros"
           description="Software eficaz ;) hecho por gente ineficaz "
-        ></Section>
+          route="/sobre-nosotros"
+        >
+          <FaUsers className="icon" />
+        </Section>
       </div>
 
       <div className="item item-3">
         <Section
           title=" Consultar Clientes"
           description="Consulta el estado de tus clientes."
+          route="/consultar-clientes"
         >
-          <Button onClick={() => alert("Button clicked!")}>
-            Consultar Clientes
-          </Button>
+          <TbDatabaseSearch className="icon" />
         </Section>
       </div>
 
@@ -42,16 +47,19 @@ export default function Landing() {
         <Section
           title=" Historial "
           description="Consulta el historial de tus transferencias."
+          route="/historial"
         >
-          <Button onClick={() => alert("Button clicked!")}>Consultar </Button>
+          <RiFolderUserFill className="icon" />
         </Section>
       </div>
 
       <div className="item item-4 ">
-        <Section title="Crear Clientes" description="Crea nuevos clientes.">
-          <Button onClick={() => alert("Button clicked!")}>
-            Crear Cliente
-          </Button>
+        <Section
+          title="Crear Clientes"
+          description="Crea nuevos clientes."
+          route="/crear-clientes"
+        >
+          <FaUserPlus className="icon" />
         </Section>
       </div>
     </div>
