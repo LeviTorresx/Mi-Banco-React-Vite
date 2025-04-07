@@ -4,7 +4,8 @@ interface Props {
   label: string;
   type: string;
   placeholder?: string;
-  value: string;
+  value: number | string;
+  name: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -13,6 +14,7 @@ export default function Input({
   type,
   placeholder,
   value,
+  name,
   onChange,
 }: Props) {
   return (
@@ -21,6 +23,7 @@ export default function Input({
         <span>{label}</span>
         <input
           type={type}
+          name={name}
           placeholder={placeholder}
           value={value}
           onChange={onChange}

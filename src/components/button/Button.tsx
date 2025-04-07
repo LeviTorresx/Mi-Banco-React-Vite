@@ -2,13 +2,14 @@ import "./Button.css"
 
 interface Props {
   children?: React.ReactNode;
-  onClick: () => void;
+  type?: "button" | "submit" | "reset" ;
+  onClick?: () => void;
 }
 
-export default function Button({ children, onClick }: Props) {
+export default function Button({ children, onClick, type }: Props) {
   return (
     <>
-      <button onClick={onClick} className="button"> {children} </button>
+      <button onClick={onClick} type={type} className="button" > {children} </button>
     </>
   );
 }
