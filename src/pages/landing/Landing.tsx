@@ -27,7 +27,7 @@ export default function Landing() {
         <Section
           title="Sobre nosotros"
           description="Software eficaz ;) hecho por gente ineficaz "
-          route="/sobre-nosotros"
+          route="https://github.com/LeviTorresx/Mi-Banco-React-Vite"
         >
           <FaUsers className="icon" />
         </Section>

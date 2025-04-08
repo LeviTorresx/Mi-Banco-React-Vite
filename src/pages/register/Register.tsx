@@ -2,8 +2,14 @@ import { useState } from "react";
 import { Input, Button } from "../../components";
 import Customer from "../../types/Customers";
 import "./Register.css";
+import Navigate from "../components/Navigate";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store/Strore";
+import { addCustomer } from "../../redux/slices/CustomersSlice";
 
 export default function Register() {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [customers, setCustomers] = useState<Customer>({
     accountNumber: "",
     firstName: "",
@@ -23,8 +29,13 @@ export default function Register() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     alert("Cliente registrado");
+
     console.log(customers);
+
+    dispatch(addCustomer(customers));
+
     setCustomers({
       accountNumber: "",
       firstName: "",
@@ -78,6 +89,10 @@ export default function Register() {
             <span>Registrar cliente</span>
           </Button>
         </form>
+        <div className="navigate-container">
+          <Navigate label="Volver" to="/" />
+          <Navigate label="Clientes" to="/consultar-clientes" />
+        </div>
       </div>
     </>
   );

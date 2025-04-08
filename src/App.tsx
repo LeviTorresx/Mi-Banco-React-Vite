@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Landing from "./pages/landing/Landing";
 import Register from "./pages/register/Register";
+import Dasboard from "./pages/dashboard/Dasboard";
 
 function App() {
   return (
@@ -9,8 +10,8 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/transferencias" element={<Landing />} />
         <Route path="/sobre-nosotros" element={<Landing />} />
-        <Route path="/consultar-clientes" element={<Landing />} />
-        <Route path="/historial" element={<Landing />} />
+        <Route path="/consultar-clientes" element={<Dasboard/>} />
+        <Route path="/historial" element={<Dasboard/>} />
         <Route path="/crear-clientes" element={<Register/>} />
       </Routes>
     </BrowserRouter>
