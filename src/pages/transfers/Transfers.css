@@ -1,0 +1,72 @@
+.transfers-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+
+.transfers-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-accent-light);
+  font-weight: 900;
+}
+
+.transfers-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 5px 0;
+}
+
+.transfers-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px 20px;
+  border-radius: 20px;
+  border: 2px solid var(--color-primary-dark);
+  box-shadow: 0 0 10px var(--color-primary-dark);
+}
+
+.transfers-customer-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.customer-info {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-accent-dark);
+  border-radius: 16px;
+  box-shadow: 0 0 10px var(--color-accent);
+  padding: 5px 20px;
+  color: var(--color-light);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  width: auto;
+  
+}
+
+.customer-info p {
+  margin: 8px 0;
+  font-weight: 700;
+}
+
+.transfers-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+@media (min-width: 768px) {
+  .transfers-form {
+    flex-direction: row;
+  }
+}

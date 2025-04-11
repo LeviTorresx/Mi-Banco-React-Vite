@@ -10,6 +10,8 @@
     cursor: pointer;
     box-shadow: 0 2px 4px var(--color-accent-dark), 0 0 4px var(--color-accent-light);
     transition: all 0.3s ease;
+    justify-content: center;
+    align-items: center;
 }
 
 .button:hover{
