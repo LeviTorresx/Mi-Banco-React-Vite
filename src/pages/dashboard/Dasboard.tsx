@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import "./Dashboard.css";
 import { RootState } from "../../redux/store/Strore";
-import Navigate from "../components/Navigate";
+import {Navigate} from "../../components";
 
 export default function Dasboard() {
   const customers = useSelector((state: RootState) => state.customers);

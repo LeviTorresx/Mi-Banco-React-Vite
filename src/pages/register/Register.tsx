@@ -1,21 +1,32 @@
 import { useState } from "react";
-import { Input, Button } from "../../components";
+import { Input, Button, Navigate, FeedbackAlert } from "../../components";
 import Customer from "../../types/Customers";
 import "./Register.css";
-import Navigate from "../components/Navigate";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux/store/Strore";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store/Strore";
 import { addCustomer } from "../../redux/slices/CustomersSlice";
 
 export default function Register() {
   const dispatch = useDispatch<AppDispatch>();
+  const customers = useSelector((state: RootState) => state.customers);
 
-  const [customers, setCustomers] = useState<Customer>({
+  const [alert, setAlert] = useState({
+    message: "",
+    severity: "success" as "success" | "error" | "info" | "warning",
+    open: false,
+  });
+
+  const [customer, setCustomers] = useState<Customer>({
     accountNumber: "",
     firstName: "",
     lastName: "",
     balance: 0,
   });
+
+  const findCustomer = (accountNumber: string) => {
+    const customer = customers.find((c) => c.accountNumber === accountNumber);
+    return customer;
+  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -30,11 +41,64 @@ export default function Register() {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    alert("Cliente registrado");
+    const { firstName, lastName, accountNumber, balance } = customer;
 
-    console.log(customers);
+    if (!firstName || !lastName || !accountNumber || balance <= 0) {
+      setAlert((prevState) => {
+        return {
+          ...prevState,
+          message: "Por favor complete todos los campos",
+          severity: "error",
+          open: true,
+        };
+      });
+      return;
+    }
 
-    dispatch(addCustomer(customers));
+    if (accountNumber.length < 4) {
+      setAlert((prevState) => {
+        return {
+          ...prevState,
+          message: "El numero de cuenta debe tener al menos 4 digitos",
+          severity: "error",
+          open: true,
+        };
+      });
+      return;
+    }
+
+    if (findCustomer(accountNumber)) {
+      setAlert((prevState) => {
+        return {
+          ...prevState,
+          message: "El cliente ya existe, por favor ingrese un numero distinto",
+          severity: "error",
+          open: true,
+        };
+      });
+
+      return;
+    }
+
+    if (balance < 10000) {
+      setAlert((prevState) => {
+        return {
+          ...prevState,
+          message: "El monto minimo es de $ 10,000",
+          severity: "error",
+          open: true,
+        };
+      });
+      return;
+    }
+
+    dispatch(addCustomer(customer));
+
+    setAlert({
+      message: "Cliente registrado exitosamente",
+      severity: "success",
+      open: true,
+    });
 
     setCustomers({
       accountNumber: "",
@@ -56,7 +120,7 @@ export default function Register() {
             type="text"
             name="firstName"
             onChange={onChange}
-            value={customers.firstName}
+            value={customer.firstName}
           />
           <Input
             label="Apellido"
@@ -64,7 +128,7 @@ export default function Register() {
             type="text"
             name="lastName"
             onChange={onChange}
-            value={customers.lastName}
+            value={customer.lastName}
           />
 
           <Input
@@ -73,7 +137,7 @@ export default function Register() {
             type="text"
             name="accountNumber"
             onChange={onChange}
-            value={customers.accountNumber}
+            value={customer.accountNumber}
           />
 
           <Input
@@ -82,12 +146,25 @@ export default function Register() {
             type="number"
             name="balance"
             onChange={onChange}
-            value={customers.balance}
+            value={customer.balance}
           />
 
           <Button type="submit">
             <span>Registrar cliente</span>
           </Button>
+
+          {alert.open && (
+            <FeedbackAlert
+              open={alert.open}
+              onClose={() => {
+                setAlert((prevState) => {
+                  return { ...prevState, open: false };
+                });
+              }}
+              message={alert.message}
+              severity={alert.severity}
+            />
+          )}
         </form>
         <div className="navigate-container">
           <Navigate label="Volver" to="/" />
