@@ -1,0 +1,89 @@
+.transfer-detail-modal {
+  background-color: var(--color-background);
+  color: var(--color-light);
+  border-radius: 20px;
+  box-shadow: 0 0 25px var(--color-accent);
+  padding: 30px;
+  max-width: 400px;
+  margin: auto;
+  outline: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.detail-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-accent-light);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.detail-success {
+  color: var(--color-accent);
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.detail-block {
+  margin-bottom: 16px;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  color: var(--color-light);
+  opacity: 0.7;
+  margin: 0;
+}
+
+.detail-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-light);
+  margin: 2px 0 0 0;
+}
+
+.detail-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.button-action {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  color: var(--color-accent-light);
+  border: 2px solid var(--color-accent-light);
+}
+
+.cancel-btn:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-dark);
+}
+
+.confirm-btn {
+  background-color: var(--color-accent-light);
+  color: var(--color-dark);
+}
+
+.confirm-btn:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+}

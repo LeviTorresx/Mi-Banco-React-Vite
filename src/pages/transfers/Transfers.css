@@ -7,7 +7,6 @@
   height: 100vh;
 }
 
-
 .transfers-title {
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -50,7 +49,7 @@
   font-size: 1.1rem;
   line-height: 1.6;
   width: auto;
-  
+  transition: all 0.3s ease-in-out;
 }
 
 .customer-info p {
@@ -58,11 +57,11 @@
   font-weight: 700;
 }
 
-.transfers-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
+.transfers-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
 }
 
 @media (min-width: 768px) {

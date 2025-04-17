@@ -4,13 +4,19 @@ import "./Transfers.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store/Strore";
 import Customer from "../../types/Customers";
+import ConfirmTransferModal from "./modal/ConfirmTransferModal";
 
 export default function Transfers() {
   const customers = useSelector((state: RootState) => state.customers);
+  const [openModal, setOpenModal] = useState(false);
 
   const [transferData, setTransferData] = useState({
     amount: 0,
     destinationAccount: "",
+    date: new Date().toLocaleString("es-CO", {
+      dateStyle: "long",
+      timeStyle: "short",
+    }),
   });
 
   const [logger, setLogger] = useState({
@@ -130,14 +136,26 @@ export default function Transfers() {
       return;
     }
 
-    // Aquí iría la lógica para actualizar balances
+    setTransferData((prev) => ({
+      ...prev,
+      date: new Date().toLocaleString("es-CO", {
+        dateStyle: "long",
+        timeStyle: "short",
+      }),
+    }));
+
+    setOpenModal(true);
+  };
+
+  const confirmTransfer = () => {
     setAlert({
-      message: `Transferencia de $${amount} enviada a ${destinationAccount}`,
+      message: `Transferencia de $${transferData.amount} enviada a ${transferData.destinationAccount}`,
       severity: "success",
       open: true,
     });
 
-    setTransferData({ amount: 0, destinationAccount: "" });
+    setTransferData({ amount: 0, destinationAccount: "", date: " " });
+    setOpenModal(false);
   };
 
   return (
@@ -216,6 +234,15 @@ export default function Transfers() {
           severity={alert.severity}
         />
       )}
+
+      <ConfirmTransferModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        onConfirm={confirmTransfer}
+        amount={transferData.amount}
+        date={transferData.date}
+        destination={transferData.destinationAccount}
+      />
     </div>
   );
 }
