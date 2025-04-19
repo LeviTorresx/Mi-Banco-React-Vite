@@ -3,6 +3,7 @@ import Landing from "./pages/landing/Landing";
 import Register from "./pages/register/Register";
 import Dasboard from "./pages/dashboard/Dasboard";
 import Transfers from "./pages/transfers/Transfers";
+import History from "./pages/history/History";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Route path="/transferencias" element={<Transfers />} />
         <Route path="/sobre-nosotros" element={<Landing />} />
         <Route path="/consultar-clientes" element={<Dasboard/>} />
-        <Route path="/historial" element={<Dasboard/>} />
+        <Route path="/historial" element={<History/>} />
         <Route path="/crear-clientes" element={<Register/>} />
       </Routes>
     </BrowserRouter>
