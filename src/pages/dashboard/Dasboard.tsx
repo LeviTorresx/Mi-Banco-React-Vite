@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import "./Dashboard.css";
-import { RootState } from "../../redux/store/Strore";
+import { RootState } from "../../redux/store/Store";
 import {Navigate} from "../../components";
 
 export default function Dasboard() {

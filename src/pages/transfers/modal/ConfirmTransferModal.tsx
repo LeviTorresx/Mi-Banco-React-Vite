@@ -17,7 +17,7 @@ export default function TransferDetailModal({
   amount,
   destination,
   date,
-  name ,
+  name,
   onConfirm,
 }: Props) {
   return (
@@ -41,9 +41,8 @@ export default function TransferDetailModal({
 
           <div className="detail-block">
             <p className="detail-label">Para:</p>
-            <p className="detail-value">{name}nombre</p>
+            <p className="detail-value">{name}</p>
           </div>
-
 
           <div className="detail-block">
             <p className="detail-label">¿Cuánto?</p>

@@ -3,7 +3,7 @@ import { Input, Button, Navigate, FeedbackAlert } from "../../components";
 import Customer from "../../types/Customers";
 import "./Register.css";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../redux/store/Strore";
+import { AppDispatch, RootState } from "../../redux/store/Store";
 import { addCustomer } from "../../redux/slices/CustomersSlice";
 
 export default function Register() {

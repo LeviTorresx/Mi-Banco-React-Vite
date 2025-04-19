@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, FeedbackAlert, Input } from "../../components";
 import "./Transfers.css";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store/Strore";
+import { RootState } from "../../redux/store/Store";
 import Customer from "../../types/Customers";
 import ConfirmTransferModal from "./modal/ConfirmTransferModal";
 
@@ -13,6 +13,7 @@ export default function Transfers() {
   const [transferData, setTransferData] = useState({
     amount: 0,
     destinationAccount: "",
+    name: "",
     date: new Date().toLocaleString("es-CO", {
       dateStyle: "long",
       timeStyle: "short",
@@ -77,6 +78,7 @@ export default function Transfers() {
           accountNumber.toLocaleLowerCase() &&
         c.firstName.toLocaleLowerCase() === firstName.toLocaleLowerCase()
     );
+
     if (!customer) {
       setAlert({
         message: "Cliente no encontrado, verifique los datos",
@@ -136,8 +138,24 @@ export default function Transfers() {
       return;
     }
 
+    const customerDestination = customers.find(
+      (c) =>
+        c.accountNumber.toLocaleLowerCase() ===
+        transferData.destinationAccount.toLocaleLowerCase()
+    );
+
+    if (!customerDestination) {
+      setAlert({
+        message: "No existe ese numero de cuenta",
+        severity: "error",
+        open: true,
+      });
+      return;
+    }
+
     setTransferData((prev) => ({
       ...prev,
+      name: customerDestination.firstName,
       date: new Date().toLocaleString("es-CO", {
         dateStyle: "long",
         timeStyle: "short",
@@ -149,12 +167,12 @@ export default function Transfers() {
 
   const confirmTransfer = () => {
     setAlert({
-      message: `Transferencia de $${transferData.amount} enviada a ${transferData.destinationAccount}`,
+      message: `Transferencia de $${transferData.amount}`,
       severity: "success",
       open: true,
     });
 
-    setTransferData({ amount: 0, destinationAccount: "", date: " " });
+    setTransferData({ amount: 0, destinationAccount: "", date: "", name: "" });
     setOpenModal(false);
   };
 
@@ -241,6 +259,7 @@ export default function Transfers() {
         onConfirm={confirmTransfer}
         amount={transferData.amount}
         date={transferData.date}
+        name={transferData.name}
         destination={transferData.destinationAccount}
       />
     </div>
