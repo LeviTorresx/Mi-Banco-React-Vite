@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./History.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store/Store";
-import { Button, Input } from "../../components";
+import { Button, Input, Navigate } from "../../components";
 import Transaction from "../../types/Transaction";
 
 export default function History() {
@@ -82,6 +82,10 @@ export default function History() {
       {transactionFiltered.length === 0 && accountNumber && (
         <p className="no-transactions">No se encontraron movimientos.</p>
       )}
+      <div className="zone-navigate">
+        <Navigate label="Atras" to="/" />
+        <Navigate label="Realizar transferencia" to="/transferencias"/>
+      </div>
     </div>
   );
 }

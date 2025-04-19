@@ -86,3 +86,11 @@
   color: var(--color-accent-light);
   font-weight: 600;
 }
+
+.zone-navigate{
+  display: flex;
+  margin: 10px 0;
+  gap: 0 20px;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, FeedbackAlert, Input } from "../../components";
+import { Button, FeedbackAlert, Input, Navigate } from "../../components";
 import "./Transfers.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store/Store";
@@ -279,6 +279,10 @@ export default function Transfers() {
         name={transferData.name}
         destination={transferData.destinationAccount}
       />
+      <div className="zone-navigate">
+              <Navigate label="Atras" to="/" />
+              <Navigate label="Historial" to="/historial"/>
+            </div>
     </div>
   );
 }
