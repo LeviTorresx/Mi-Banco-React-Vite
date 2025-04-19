@@ -173,15 +173,17 @@ export default function Transfers() {
     });
 
     setTransferData({ amount: 0, destinationAccount: "", date: "", name: "" });
+    setCustomer({ firstName: "", balance: 0, lastName: "", accountNumber: "" });
     setOpenModal(false);
   };
 
   return (
     <div className="transfers-container">
       <div className="transfers-header">
-        <h1 className="transfers-title">Transferencias</h1>
+        <h2 className="transfers-title">Transferencias</h2>
       </div>
       <div className="transfers-content">
+        <h3 className="tittle-content"> Confirme sus datos</h3>
         <div className="transfers-form">
           <Input
             label="Número de cuenta"

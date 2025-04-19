@@ -21,6 +21,12 @@
   margin: 5px 0;
 }
 
+.tittle-content {
+  text-align: center;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
 .transfers-form {
   display: flex;
   flex-direction: column;
