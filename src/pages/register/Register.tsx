@@ -167,7 +167,7 @@ export default function Register() {
           )}
         </form>
         <div className="navigate-container">
-          <Navigate label="Volver" to="/" />
+          <Navigate label="Atras" to="/" />
           <Navigate label="Clientes" to="/consultar-clientes" />
         </div>
       </div>

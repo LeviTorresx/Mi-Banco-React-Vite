@@ -31,7 +31,7 @@ export default function Dasboard() {
           </tbody>
         </table>
       </div>
-      <Navigate label="Regresar" to="/" />
+      <Navigate label="Atras" to="/" />
     </div>
   );
 }
