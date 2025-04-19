@@ -2,15 +2,15 @@ import { useState } from "react";
 import { Button, FeedbackAlert, Input, Navigate } from "../../components";
 import "./Transfers.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store/Store";
+import { AppDispatch, RootState } from "../../redux/store/Store";
 import Customer from "../../types/Customers";
 import ConfirmTransferModal from "./modal/ConfirmTransferModal";
-import { addTransaction } from "../../redux/slices/TransactionSlice";
 import Transaction from "../../types/Transaction";
+import { createTransaction } from "../../redux/slices/TransactionSlice";
 
 export default function Transfers() {
   const customers = useSelector((state: RootState) => state.customers);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -36,6 +36,7 @@ export default function Transfers() {
   });
 
   const [customer, setCustomer] = useState<Customer>({
+    id: "",
     accountNumber: "",
     firstName: "",
     lastName: "",
@@ -90,6 +91,7 @@ export default function Transfers() {
         open: true,
       });
       setCustomer({
+        id: "",
         accountNumber: "",
         firstName: "",
         lastName: "",
@@ -177,13 +179,19 @@ export default function Transfers() {
       timestamp: transferData.date,
     };
 
-    dispatch(addTransaction(newTransaction));
+    dispatch(createTransaction(newTransaction));
 
     setOpenModal(false);
 
     setTransferData({ amount: 0, destinationAccount: "", date: "", name: "" });
 
-    setCustomer({ firstName: "", balance: 0, lastName: "", accountNumber: "" });
+    setCustomer({
+      firstName: "",
+      balance: 0,
+      lastName: "",
+      accountNumber: "",
+      id: "",
+    });
     setAlert({
       message: `Transferencia de $${newTransaction.amount}`,
       severity: "success",

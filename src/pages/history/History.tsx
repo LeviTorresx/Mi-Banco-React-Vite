@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./History.css";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store/Store";
 import { Button, Input, Navigate } from "../../components";
 import Transaction from "../../types/Transaction";
+import { fetchTransactions } from "../../redux/slices/TransactionSlice";
 
 export default function History() {
   const [searchValue, setSearchValue] = useState("");
@@ -11,12 +12,17 @@ export default function History() {
   const [transactionFiltered, setTransactionFiltered] = useState<Transaction[]>(
     []
   );
+  const dispatch = useDispatch<AppDispatch>();
 
   const transactions = useSelector((state: RootState) => state.transaction);
 
   const handleSearch = () => {
     const trimmed = searchValue.trim().toLowerCase();
     setAccountNumber(trimmed); // guardamos solo cuando se hace click
+
+    dispatch(fetchTransactions(trimmed)); 
+
+    console.log(transactions)
 
     const filtered = transactions.filter(
       (tx) =>

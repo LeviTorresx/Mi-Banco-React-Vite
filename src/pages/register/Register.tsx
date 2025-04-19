@@ -4,10 +4,11 @@ import Customer from "../../types/Customers";
 import "./Register.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store/Store";
-import { addCustomer } from "../../redux/slices/CustomersSlice";
+import { createCustomer } from "../../redux/slices/CustomersSlice";
 
 export default function Register() {
   const dispatch = useDispatch<AppDispatch>();
+
   const customers = useSelector((state: RootState) => state.customers);
 
   const [alert, setAlert] = useState({
@@ -17,6 +18,7 @@ export default function Register() {
   });
 
   const [customer, setCustomers] = useState<Customer>({
+    id: "",
     accountNumber: "",
     firstName: "",
     lastName: "",
@@ -92,7 +94,7 @@ export default function Register() {
       return;
     }
 
-    dispatch(addCustomer(customer));
+    dispatch(createCustomer(customer));
 
     setAlert({
       message: "Cliente registrado exitosamente",
@@ -101,6 +103,7 @@ export default function Register() {
     });
 
     setCustomers({
+      id: "",
       accountNumber: "",
       firstName: "",
       lastName: "",

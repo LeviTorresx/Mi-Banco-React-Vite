@@ -1,15 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Dashboard.css";
-import { RootState } from "../../redux/store/Store";
+import { AppDispatch, RootState } from "../../redux/store/Store";
 import { FeedbackAlert, Navigate } from "../../components";
-import { Dispatch } from "@reduxjs/toolkit";
-import { removeCustomer } from "../../redux/slices/CustomersSlice";
-import { useState } from "react";
+import { deleteCustomer, fetchCustomers } from "../../redux/slices/CustomersSlice";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
   const customers = useSelector((state: RootState) => state.customers);
 
-  const dispatch = useDispatch<Dispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
   const [alert, setAlert] = useState({
     open: false,
@@ -19,7 +18,7 @@ export default function Dashboard() {
 
   const onDeleteCustomer = (accountNumber: string) => {
     try {
-      dispatch(removeCustomer(accountNumber));
+      dispatch(deleteCustomer(accountNumber));
       setAlert({
         open: true,
         message: `Cliente eliminado ${accountNumber} correctamente`,
@@ -35,6 +34,10 @@ export default function Dashboard() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    dispatch(fetchCustomers());
+  }, [dispatch, customers]);
 
   return (
     <div className="dashboard-container">
@@ -54,10 +57,9 @@ export default function Dashboard() {
               </p>
             </div>
             <div className="card-actions">
-              <button className="edit-btn">Editar</button>
               <button
                 className="delete-btn"
-                onClick={() => onDeleteCustomer(c.accountNumber)}
+                onClick={() => onDeleteCustomer(c.id)}
               >
                 Eliminar
               </button>
