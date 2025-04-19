@@ -79,8 +79,8 @@ export default function Transfers() {
     const customer = customers.find(
       (c) =>
         c.accountNumber.toLocaleLowerCase() ===
-          accountNumber.toLocaleLowerCase() &&
-        c.firstName.toLocaleLowerCase() === firstName.toLocaleLowerCase()
+          accountNumber.trim().toLocaleLowerCase() &&
+        c.firstName.toLocaleLowerCase() === firstName.trim().toLocaleLowerCase()
     );
 
     if (!customer) {
@@ -170,7 +170,6 @@ export default function Transfers() {
   };
 
   const confirmTransfer = () => {
-    
     const newTransaction: Transaction = {
       receiverAccountNumber: transferData.destinationAccount,
       senderAccountNumber: customer.accountNumber,
@@ -280,9 +279,9 @@ export default function Transfers() {
         destination={transferData.destinationAccount}
       />
       <div className="zone-navigate">
-              <Navigate label="Atras" to="/" />
-              <Navigate label="Historial" to="/historial"/>
-            </div>
+        <Navigate label="Atras" to="/" />
+        <Navigate label="Historial" to="/historial" />
+      </div>
     </div>
   );
 }
